@@ -1,6 +1,8 @@
 package com.kzree.backend.criteria.domain;
 
 import com.kzree.backend.common.domain.BaseEntity;
+import com.kzree.backend.criteria.enumeration.CriteriaField;
+import com.kzree.backend.criteria.enumeration.CriteriaOperator;
 import com.kzree.backend.filter.domain.Filter;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -22,11 +24,13 @@ public class Criteria extends BaseEntity {
     @JoinColumn(name = "filter_id", nullable = false)
     private Filter filter;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String field;
+    private CriteriaField field;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String operator;
+    private CriteriaOperator operator;
 
     @Column(nullable = false)
     private String value;

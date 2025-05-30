@@ -2,6 +2,9 @@ package com.kzree.backend.criteria.dto;
 
 import java.util.UUID;
 
+import com.kzree.backend.criteria.enumeration.CriteriaField;
+import com.kzree.backend.criteria.enumeration.CriteriaOperator;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +14,9 @@ public class CriteriaDTO {
 
     private UUID id;
 
-    private String field;
+    private CriteriaField field;
 
-    private String operator;
+    private CriteriaOperator operator;
 
     private String value;
 }
