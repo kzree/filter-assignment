@@ -21,6 +21,6 @@ public class Filter extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "filter", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Criteria> criteria;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "filter", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Criteria> criterias;
 }
