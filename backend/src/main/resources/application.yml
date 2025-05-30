@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: demo-app
+
+  devtools:
+    livereload:
+      enabled: false
+
+  datasource:
+    url: jdbc:postgresql://localhost:6000/filter-db
+    username: psuser
+    password: pspass
+    hikari:
+      pool-name: PostgresHikari
+      auto-commit: false
+  flyway:
+    locations: classpath:db/migration
+    url: jdbc:postgresql://localhost:6000/filter-db
+    user: psuser
+    password: pspass
