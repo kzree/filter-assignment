@@ -1,5 +1,6 @@
 package com.kzree.backend.web.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -27,6 +28,8 @@ import com.kzree.backend.filter.dto.FilterDTO;
 import com.kzree.backend.filter.repository.FilterRepository;
 import com.kzree.backend.util.Serialization;
 
+import jakarta.persistence.EntityManager;
+
 @IntegrationTest
 @AutoConfigureMockMvc
 public class FilterControllerIT {
@@ -40,6 +43,9 @@ public class FilterControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    EntityManager em;
 
     @Test
     @Transactional
@@ -146,8 +152,19 @@ public class FilterControllerIT {
         criteria.setFilter(filter);
         criteria = criteriaRepository.saveAndFlush(criteria);
 
+        em.clear();
+
         mockMvc
                 .perform(delete(ENTITY_API_URL + "/" + filter.getId()))
                 .andExpect(status().isNoContent());
+
+        em.flush();
+        em.clear();
+
+        var filters = filterRepository.findAll();
+        assertThat(filters).isEmpty();
+
+        var criteriaList = criteriaRepository.findAll();
+        assertThat(criteriaList).isEmpty();
     }
 }
