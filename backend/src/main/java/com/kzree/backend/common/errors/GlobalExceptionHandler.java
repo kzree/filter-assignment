@@ -16,6 +16,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest req) {
         ErrorResponse errorResponse = new ErrorResponse(RESOURCE_NOT_FOUND, ex.getMessage(),
+                ex.getErrorCode(),
                 HttpStatus.NOT_FOUND.value(),
                 req.getDescription(false).replace("uri=", ""));
 
@@ -25,6 +26,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequestException(BadRequestException ex, WebRequest req) {
         ErrorResponse errorResponse = new ErrorResponse(BAD_REQUEST, ex.getMessage(),
+                ex.getErrorCode(),
                 HttpStatus.BAD_REQUEST.value(),
                 req.getDescription(false).replace("uri=", ""));
 
@@ -42,6 +44,7 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(
                 BAD_REQUEST,
                 message.toString(),
+                ErrorCodes.VALIDATION_ERROR,
                 HttpStatus.BAD_REQUEST.value(),
                 request.getDescription(false).replace("uri=", ""));
 
@@ -55,6 +58,7 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(
                 INTERNAL_SERVER_ERROR,
                 ex.getMessage(),
+                ErrorCodes.INTERNAL_ERROR,
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 request.getDescription(false).replace("uri=", ""));
 
