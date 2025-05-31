@@ -32,9 +32,9 @@ public class FilterService {
     }
 
     @Transactional
-    public void createFilter(FilterDTO fitler) {
+    public FilterDTO createFilter(FilterDTO fitler) {
         var filter = filterMapper.toEntity(fitler);
-        filterRepository.save(filter);
+        return filterMapper.toDto(filterRepository.save(filter));
     }
 
     @Transactional

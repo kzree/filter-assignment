@@ -1,9 +1,13 @@
 package com.kzree.backend.filter.controller;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,15 +49,22 @@ public class FilterController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createFilter(@RequestBody FilterDTO filter) {
+    public ResponseEntity<FilterDTO> createFilter(@Validated @RequestBody FilterDTO filter) throws URISyntaxException {
         log.info("REST request to create a new filter");
-        filterService.createFilter(filter);
-        return ResponseEntity.noContent().build();
+        var result = filterService.createFilter(filter);
+        return ResponseEntity.created(new URI("/api/filters/" + result.getId())).body(result);
     }
 
     @PutMapping
     public ResponseEntity<Void> updateFilter() {
         log.info("REST request to update an existing filter");
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFilter(@PathVariable UUID id) {
+        log.info("REST request to delete filter with id: {}", id);
+        filterService.deleteFilter(id);
         return ResponseEntity.noContent().build();
     }
 }
