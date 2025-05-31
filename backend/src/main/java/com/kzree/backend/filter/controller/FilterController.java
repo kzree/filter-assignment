@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kzree.backend.common.errors.ResourceNotFoundException;
 import com.kzree.backend.filter.dto.FilterDTO;
 import com.kzree.backend.filter.service.FilterService;
 
@@ -37,9 +38,8 @@ public class FilterController {
         log.info("REST request to fetch filter with id: {}", id);
         var filter = filterService.getFilterById(id);
 
-        // TODO: better error handling
         if (filter.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("Filter not found with id: " + id);
         }
         return ResponseEntity.ok(filter.get());
     }
