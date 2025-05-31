@@ -28,7 +28,7 @@ public class FilterControllerIT {
     @Test
     @Transactional
     public void getAllFilters() throws Exception {
-        var testName = "Jesus filter";
+        var testName = "Test Filter";
 
         var filter = new Filter();
         filter.setName(testName);
@@ -37,6 +37,10 @@ public class FilterControllerIT {
         mockMvc
                 .perform(get(ENTITY_API_URL))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.[0].id").isNotEmpty())
+                .andExpect(jsonPath("$.[0].createdAt").isNotEmpty())
+                .andExpect(jsonPath("$.[0].modifiedAt").isNotEmpty())
+                .andExpect(jsonPath("$.[0].criterias").isEmpty())
                 .andExpect(jsonPath("$.[0].name").value(testName))
                 .andExpect(jsonPath("$.length()").value(1));
     }
