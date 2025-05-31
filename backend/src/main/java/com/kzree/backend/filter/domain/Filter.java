@@ -15,6 +15,7 @@ import java.util.UUID;
 @Table(name = "filter")
 public class Filter extends BaseEntity {
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private UUID id;
 

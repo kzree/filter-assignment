@@ -17,6 +17,7 @@ import java.util.UUID;
 public class Criteria extends BaseEntity {
 
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private UUID id;
 
