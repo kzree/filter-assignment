@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,21 +28,26 @@ public class FilterController {
     @GetMapping
     public ResponseEntity<List<FilterDTO>> getFilters() {
         log.info("REST request to fetch all filters");
-        var filters = List.<FilterDTO>of();
+        var filters = filterService.getFilters();
         return ResponseEntity.ok(filters);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<FilterDTO> getFilterById(@PathVariable UUID id) {
         log.info("REST request to fetch filter with id: {}", id);
-        var filter = new FilterDTO();
-        return ResponseEntity.ok(filter);
+        var filter = filterService.getFilterById(id);
+
+        // TODO: better error handling
+        if (filter.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(filter.get());
     }
 
     @PostMapping
-    public ResponseEntity<Void> createFilter() {
+    public ResponseEntity<Void> createFilter(@RequestBody FilterDTO filter) {
         log.info("REST request to create a new filter");
-        filterService.createFilter();
+        filterService.createFilter(filter);
         return ResponseEntity.noContent().build();
     }
 
