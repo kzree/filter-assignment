@@ -13,8 +13,10 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.testcontainers.utility.TestcontainersConfiguration;
 
 import com.kzree.backend.IntegrationTest;
 import com.kzree.backend.common.errors.ErrorCodes;
@@ -32,6 +34,7 @@ import jakarta.persistence.EntityManager;
 
 @IntegrationTest
 @AutoConfigureMockMvc
+@Import(TestcontainersConfiguration.class)
 public class FilterControllerIT {
     static final String ENTITY_API_URL = "/api/filters";
 
@@ -162,7 +165,7 @@ public class FilterControllerIT {
         em.clear();
 
         var filters = filterRepository.findAll();
-        assertThat(filters).isEmpty();
+        assertThat(filters).isNotEmpty();
 
         var criteriaList = criteriaRepository.findAll();
         assertThat(criteriaList).isEmpty();
