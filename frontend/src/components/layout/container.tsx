@@ -11,7 +11,7 @@ export const Container: ReactComponent<ContainerProps> = ({
   children,
   noPadding = false,
 }) => {
-  const classes = clsx('container mx-auto', className, !noPadding ? 'px-4' : '');
-
-  return <div className={classes}>{children}</div>;
+  return (
+    <div className={clsx('container mx-auto', className, !noPadding ? 'px-4' : '')}>{children}</div>
+  );
 };
