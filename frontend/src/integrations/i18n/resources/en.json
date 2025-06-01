@@ -1,7 +1,18 @@
 {
   "page": {
     "filters": {
-      "title": "Filters"
+      "title": "Filters",
+      "heading": "Filters",
+      "table": {
+        "row": {
+          "name": "Filter name",
+          "criterias": "Criterias",
+          "createdAt": "Created at"
+        }
+      }
+    },
+    "default": {
+      "title": "Filter application"
     }
   }
 }
