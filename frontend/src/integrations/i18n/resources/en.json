@@ -14,5 +14,11 @@
     "default": {
       "title": "Filter application"
     }
+  },
+  "form": {
+    "submit": "Submit",
+    "filter": {
+      "name": "Filter name"
+    }
   }
 }
