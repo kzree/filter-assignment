@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { FormField, Input } from '../form';
 import { Button } from '../common';
-import { CriteriaRow } from './criteria-row';
+import { Criterias } from './criterias';
 import type { FilterFormData } from '@/util/schema';
 import { filterFormSchema } from '@/util/schema';
 
@@ -23,7 +23,7 @@ const FilterForm = () => {
             <Input id="name" {...register('name')} />
           </FormField>
         </div>
-        <CriteriaRow />
+        <Criterias />
         <div className="flex justify-end">
           <Button type="submit">{t('form.submit')}</Button>
         </div>
@@ -35,6 +35,10 @@ const FilterForm = () => {
 export const FilterFormWithContext = () => {
   const methods = useForm<FilterFormData>({
     resolver: zodResolver(filterFormSchema),
+    defaultValues: {
+      name: '',
+      criterias: [{ field: '', operator: '', value: '' }],
+    },
   });
 
   return (
