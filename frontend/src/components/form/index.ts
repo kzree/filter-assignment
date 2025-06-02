@@ -1,2 +1,3 @@
-export * from './form-field.tsx';
-export * from './input.tsx';
+export * from './form-field';
+export * from './input';
+export * from './select';

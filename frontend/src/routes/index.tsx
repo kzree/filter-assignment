@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { Container, Page } from '@/components/layout';
-import { Card, Text } from '@/components/common';
+import { Button, Card, Text } from '@/components/common';
 import { FilterFormWithContext, FilterTable } from '@/components/page-components';
 
 export const Route = createFileRoute('/')({
@@ -14,10 +14,16 @@ function App() {
     <Page title="filters">
       <Container className="py-10">
         <Card>
-          <Text size="2xl" as="h1" className="pb-10" bold>
-            {t('page.filters.heading')}
-          </Text>
+          <div className="flex items-center justify-between pb-10">
+            <Text size="2xl" as="h1" bold>
+              {t('page.filters.heading')}
+            </Text>
+            <Button>{t('page.filters.button.new')}</Button>
+          </div>
           <FilterTable />
+          <Text as="h2" size="lg" bold>
+            {t('form.filter.heading.new')}
+          </Text>
           <FilterFormWithContext />
         </Card>
       </Container>

@@ -11,7 +11,7 @@ export const Button: ReactComponent<ButtonProps> = ({ children, onClick, type = 
   return (
     <button
       className={clsx(
-        'cursor-pointer px-3 py-1 rounded transition-all',
+        'cursor-pointer px-4 py-1 rounded transition-all font-semibold',
         'bg-amber-400 hover:bg-amber-500',
       )}
       type={type}

@@ -3,12 +3,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { FormField, Input } from '../form';
 import { Button } from '../common';
+import { CriteriaRow } from './criteria-row';
 import type { FilterFormData } from '@/util/schema';
 import { filterFormSchema } from '@/util/schema';
 
 const FilterForm = () => {
   const { t } = useTranslation();
-  const { handleSubmit } = useFormContext<FilterFormData>();
+  const { handleSubmit, register } = useFormContext<FilterFormData>();
 
   const onSubmit = (data: FilterFormData) => {
     console.log('Form submitted with data:', data);
@@ -17,13 +18,14 @@ const FilterForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-8">
-        <div className="grid grid-cols-2 gap-8">
-          <FormField label="form.filter.name" htmlFor="name">
-            <Input id="name" />
+        <div className="grid grid-cols-2 gap-4">
+          <FormField label="form.filter.label.name" htmlFor="name">
+            <Input id="name" {...register('name')} />
           </FormField>
         </div>
+        <CriteriaRow />
         <div className="flex justify-end">
-          <Button>{t('form.submit')}</Button>
+          <Button type="submit">{t('form.submit')}</Button>
         </div>
       </div>
     </form>

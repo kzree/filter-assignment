@@ -3,6 +3,9 @@
     "filters": {
       "title": "Filters",
       "heading": "Filters",
+      "button": {
+        "new": "Create new filter"
+      },
       "table": {
         "row": {
           "name": "Filter name",
@@ -18,7 +21,17 @@
   "form": {
     "submit": "Submit",
     "filter": {
-      "name": "Filter name"
+      "heading": {
+        "new": "Create new filter",
+        "edit": "Edit filter"
+      },
+      "label": {
+        "name": "Filter name"
+      },
+      "button": {
+        "new-row": "Add",
+        "remove-row": "Remove"
+      }
     }
   }
 }

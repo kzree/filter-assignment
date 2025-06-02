@@ -8,6 +8,7 @@ export type TextProps = {
   as?: string;
   className?: string;
   bold?: boolean;
+  semiBold?: boolean;
   size?: TextSize | 'custom';
 };
 
@@ -16,6 +17,7 @@ export const Text: ReactComponent<TextProps> = ({
   className,
   size,
   bold = false,
+  semiBold = false,
   as: element = 'p',
 }) => {
   const classes = clsx(className, {
@@ -26,6 +28,7 @@ export const Text: ReactComponent<TextProps> = ({
     'text-xl': size === 'xl',
     'text-2xl': size === '2xl',
     'font-bold': bold,
+    'font-semibold': semiBold,
   });
 
   const Element = element as keyof JSX.IntrinsicElements;
