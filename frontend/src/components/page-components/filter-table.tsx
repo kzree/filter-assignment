@@ -4,11 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Table } from '../common';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { Filter } from '@/types/api';
+import { useFilters } from '@/util/services';
 
 const columnHelper = createColumnHelper<Filter>();
 
 export const FilterTable = () => {
   const { t } = useTranslation();
+  const { filters } = useFilters();
 
   const columns = useMemo(
     () =>
@@ -38,5 +40,5 @@ export const FilterTable = () => {
     [],
   );
 
-  return <Table data={[]} columns={columns} />;
+  return <Table data={filters} columns={columns} />;
 };
