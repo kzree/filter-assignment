@@ -3,33 +3,13 @@ import { useFormContext } from 'react-hook-form';
 import { useEffect, useMemo } from 'react';
 import { Button } from '../common';
 import { FormField, Input, Select } from '../form';
-import type { Option } from '../form';
 import type { ReactComponent } from '@/types/react';
-
-// TODO: move to a constants file
-const CRITERIA_FIELD_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.field.amount', value: 'AMOUNT' },
-  { label: 'form.filter.criteria.field.title', value: 'TITLE' },
-  { label: 'form.filter.criteria.field.date', value: 'DATE' },
-];
-
-const AMOUNT_OPERATOR_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.operator.equals', value: 'EQUALS' },
-  { label: 'form.filter.criteria.operator.greater-than', value: 'GREATER_THAN' },
-  { label: 'form.filter.criteria.operator.less-than', value: 'LESS_THAN' },
-];
-
-const DATE_OPERATOR_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.operator.equals', value: 'EQUALS' },
-  { label: 'form.filter.criteria.operator.from', value: 'FROM' },
-  { label: 'form.filter.criteria.operator.to', value: 'TO' },
-];
-
-const DEFAULT_OPERATOR_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.operator.equals', value: 'EQUALS' },
-  { label: 'form.filter.criteria.operator.starts-with', value: 'STARTS_WITH' },
-  { label: 'form.filter.criteria.operator.ends-with', value: 'ENDS_WITH' },
-];
+import {
+  AMOUNT_OPERATOR_OPTIONS,
+  CRITERIA_FIELD_OPTIONS,
+  DATE_OPERATOR_OPTIONS,
+  DEFAULT_OPERATOR_OPTIONS,
+} from '@/util/constants';
 
 export type CriteriaProps = {
   index: number;
@@ -51,7 +31,7 @@ export const CriteriaRow: ReactComponent<CriteriaProps> = ({ index, onAdd, onRem
         setValue(`${fieldPrefix}value`, '0');
         break;
       case 'DATE':
-        setValue(`${fieldPrefix}operator`, 'BEFORE', { shouldValidate: true });
+        setValue(`${fieldPrefix}operator`, 'FROM', { shouldValidate: true });
         setValue(`${fieldPrefix}value`, '');
         break;
       default:

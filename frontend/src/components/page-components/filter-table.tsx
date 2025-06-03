@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Table } from '../common';
+import { CriteriaDisplay } from './criteria-display';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { Filter } from '@/types/api';
 import { useFilters } from '@/util/services';
@@ -21,20 +22,11 @@ export const FilterTable = () => {
         }),
         columnHelper.accessor('criterias', {
           header: t('page.filters.table.row.criterias'),
-          cell: (info) => info.getValue().length,
+          cell: (info) => <CriteriaDisplay criterias={info.getValue()} />,
         }),
         columnHelper.accessor('createdAt', {
           header: t('page.filters.table.row.createdAt'),
           cell: (info) => new Date(info.getValue()).toLocaleDateString(),
-        }),
-        columnHelper.accessor('id', {
-          header: '',
-          cell: () => (
-            <div className="flex gap-2">
-              <button>{t('common.edit')}</button>
-              <button>{t('common.delete')}</button>
-            </div>
-          ),
         }),
       ] as Array<ColumnDef<Filter>>,
     [],

@@ -8,6 +8,37 @@ type TableMeta = {
   minWidth?: string | number;
 };
 
+export const TBody = <TData extends object>({ table }: { table: ReactTable<TData> }) => (
+  <tbody>
+    {table.getRowModel().rows.map((row) => (
+      <tr className="h-14 border-b border-gray-200" key={row.id}>
+        {row.getVisibleCells().map((cell, idx) => {
+          const style: CSSProperties = {};
+          const meta = cell.column.columnDef.meta as TableMeta | undefined;
+
+          if (meta?.width) {
+            style.width = `${meta.width}px`;
+          }
+
+          if (meta?.minWidth) {
+            style.minWidth = `${meta.minWidth}px`;
+          }
+
+          return (
+            <td
+              className={clsx('first:pl-3 last:pr-3 text-left text-black text-sm')}
+              key={`${cell.id}-${idx}`}
+              style={style}
+            >
+              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            </td>
+          );
+        })}
+      </tr>
+    ))}
+  </tbody>
+);
+
 type THeadProps<TData> = {
   table: ReactTable<TData>;
 };
@@ -58,6 +89,7 @@ export const Table = <TData extends object>({ data, columns }: TableProps<TData>
   return (
     <table className="w-full">
       <THead table={table} />
+      <TBody table={table} />
     </table>
   );
 };
