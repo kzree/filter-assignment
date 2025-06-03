@@ -37,7 +37,7 @@ export const FilterFormWithContext = () => {
     resolver: zodResolver(filterFormSchema),
     defaultValues: {
       name: '',
-      criterias: [{ field: '', operator: '', value: '' }],
+      criterias: [{ field: 'AMOUNT', operator: 'EQUAL', value: '2' }],
     },
   });
 

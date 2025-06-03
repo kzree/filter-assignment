@@ -1,7 +1,7 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { CriteriaRow } from './criteria-row';
 
-const NEW_CRITERIA = { field: '', operator: '', value: '' };
+const NEW_CRITERIA = { field: 'AMOUNT', operator: 'EQUAL', value: '0' };
 
 export const Criterias = () => {
   const { control } = useFormContext();
