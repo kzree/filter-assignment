@@ -1,5 +1,6 @@
 package com.kzree.backend.filter.dto;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,5 +18,6 @@ public class FilterDTO extends EntityDTO {
     private String name;
 
     @NotEmpty
+    @Valid
     private Set<CriteriaDTO> criterias = new HashSet<>();
 }

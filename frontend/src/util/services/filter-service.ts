@@ -26,10 +26,11 @@ export const useFilters = () => {
   return { filters: data || [], status };
 };
 
-export const useSaveFilter = () => {
+export const useSaveFilter = (onSuccess?: () => void) => {
   const { mutate, status } = useMutation({
     mutationKey: ['saveFilter'],
     mutationFn: saveFilter,
+    onSuccess,
   });
 
   return { saveFilter: mutate, status };

@@ -11,7 +11,12 @@ import { useSaveFilter } from '@/util/services';
 const FilterForm = () => {
   const { t } = useTranslation();
   const { handleSubmit, register } = useFormContext<FilterFormData>();
-  const { saveFilter, status } = useSaveFilter();
+
+  const handleSuccess = () => {
+    window.location.reload();
+  };
+
+  const { saveFilter, status } = useSaveFilter(handleSuccess);
 
   const onSubmit = (data: FilterFormData) => {
     saveFilter(data);
