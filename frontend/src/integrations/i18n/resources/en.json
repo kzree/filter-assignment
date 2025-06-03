@@ -44,7 +44,7 @@
           "date": "Date"
         },
         "operator": {
-          "equal": "Equals",
+          "equals": "Equals",
           "greater-than": "Greater than",
           "less-than": "Less than",
           "from": "From",

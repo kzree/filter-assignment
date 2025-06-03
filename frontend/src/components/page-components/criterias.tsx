@@ -11,7 +11,7 @@ export const Criterias = () => {
   });
 
   return (
-    <div>
+    <div className="space-y-6">
       {fields.map((field, idx) => {
         const key = `criteria-${field.id}`;
         return (

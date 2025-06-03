@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '../api';
 import type { Filter } from '@/types/api';
+import type { FilterFormData } from '../schema';
 
 const PATH = 'filters';
 
@@ -10,6 +11,12 @@ export const getFilters = async (): Promise<Array<Filter>> => {
   return await res.json();
 };
 
+export const saveFilter = async (filter: FilterFormData): Promise<Filter> => {
+  const res = api.post(PATH, { json: filter });
+
+  return res.json();
+};
+
 export const useFilters = () => {
   const { data, status } = useQuery({
     queryKey: ['filters'],
@@ -17,4 +24,13 @@ export const useFilters = () => {
   });
 
   return { filters: data || [], status };
+};
+
+export const useSaveFilter = () => {
+  const { mutate, status } = useMutation({
+    mutationKey: ['saveFilter'],
+    mutationFn: saveFilter,
+  });
+
+  return { saveFilter: mutate, status };
 };

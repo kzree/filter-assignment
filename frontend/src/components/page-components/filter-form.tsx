@@ -6,13 +6,15 @@ import { Button } from '../common';
 import { Criterias } from './criterias';
 import type { FilterFormData } from '@/util/schema';
 import { filterFormSchema } from '@/util/schema';
+import { useSaveFilter } from '@/util/services';
 
 const FilterForm = () => {
   const { t } = useTranslation();
   const { handleSubmit, register } = useFormContext<FilterFormData>();
+  const { saveFilter, status } = useSaveFilter();
 
   const onSubmit = (data: FilterFormData) => {
-    console.log('Form submitted with data:', data);
+    saveFilter(data);
   };
 
   return (
@@ -25,7 +27,9 @@ const FilterForm = () => {
         </div>
         <Criterias />
         <div className="flex justify-end">
-          <Button type="submit">{t('form.submit')}</Button>
+          <Button type="submit" disabled={status === 'pending'}>
+            {t('form.submit')}
+          </Button>
         </div>
       </div>
     </form>
