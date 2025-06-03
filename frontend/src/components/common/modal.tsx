@@ -8,11 +8,12 @@ import type { ReactComponent } from '@/types/react';
 export type ModalProps = {
   isOpen?: boolean;
   onClose?: () => void;
+  title: string;
 };
 
 // I would have made only the content scrollable and have the title stay inplace, but due
 // to the interesting resizing requirement the scrolling will look ugly
-export const Modal: ReactComponent<ModalProps> = ({ children, onClose, isOpen = false }) => {
+export const Modal: ReactComponent<ModalProps> = ({ children, onClose, title, isOpen = false }) => {
   const [height, setHeight] = useState(500);
   const [isResizing, setIsResizing] = useState(false);
 
@@ -84,7 +85,7 @@ export const Modal: ReactComponent<ModalProps> = ({ children, onClose, isOpen = 
         </button>
       )}
       <Text as="h3" size="xl" className="pb-6" bold>
-        {t('modal.filter.create.title')}
+        {t(title)}
       </Text>
       <div className="overflow-auto">{children}</div>
       <div

@@ -1,15 +1,31 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import { Container, Page } from '@/components/layout';
 import { Button, Card, Modal, Text } from '@/components/common';
 import { FilterFormWithContext, FilterTable, NewFilterModal } from '@/components/page-components';
+import { useAppStore } from '@/store';
 
 export const Route = createFileRoute('/')({
   component: App,
 });
 
 function App() {
+  const [showForm, setShowForm] = useState(false);
   const { t } = useTranslation();
+  const { setIsFormModalOpen, formVisualType, setFormVisualType } = useAppStore();
+
+  const handleCreateNewButton = () => {
+    if (formVisualType === 'modal') {
+      setIsFormModalOpen(true);
+    } else {
+      setShowForm(true);
+    }
+  };
+
+  const handleToggleFormVisualType = () => {
+    setFormVisualType(formVisualType === 'modal' ? 'page' : 'modal');
+  };
 
   return (
     <Page title="filters">
@@ -19,13 +35,22 @@ function App() {
             <Text size="2xl" as="h1" bold>
               {t('page.filters.heading')}
             </Text>
-            <Button>{t('page.filters.button.new')}</Button>
+            <div className="flex gap-2">
+              <Button onClick={handleToggleFormVisualType}>
+                {t('page.filters.button.toggle')}
+              </Button>
+              <Button onClick={handleCreateNewButton}>{t('page.filters.button.new')}</Button>
+            </div>
           </div>
           <FilterTable />
-          <Text as="h2" size="lg" bold>
-            {t('form.filter.heading.new')}
-          </Text>
-          <FilterFormWithContext />
+          {showForm && (
+            <>
+              <Text as="h2" size="lg" bold className="mt-24">
+                {t('form.filter.heading.new')}
+              </Text>
+              <FilterFormWithContext />
+            </>
+          )}
         </Card>
       </Container>
       <NewFilterModal />

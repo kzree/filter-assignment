@@ -4,7 +4,8 @@
       "title": "Filters",
       "heading": "Filters",
       "button": {
-        "new": "Create new filter"
+        "new": "Create new filter",
+        "toggle": "Toggle form mode"
       },
       "table": {
         "row": {
