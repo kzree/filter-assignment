@@ -26,11 +26,32 @@
         "edit": "Edit filter"
       },
       "label": {
-        "name": "Filter name"
+        "name": "Filter name",
+        "criteria": {
+          "field": "Field",
+          "operator": "Operator",
+          "value": "Value"
+        }
       },
       "button": {
         "new-row": "Add",
         "remove-row": "Remove"
+      },
+      "criteria": {
+        "field": {
+          "amount": "Amount",
+          "title": "Title",
+          "date": "Date"
+        },
+        "operator": {
+          "equal": "Equals",
+          "greater-than": "Greater than",
+          "less-than": "Less than",
+          "from": "From",
+          "to": "To",
+          "starts-with": "Starts with",
+          "ends-with": "Ends with"
+        }
       }
     }
   }

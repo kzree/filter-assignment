@@ -8,25 +8,25 @@ import type { ReactComponent } from '@/types/react';
 
 // TODO: move to a constants file
 const CRITERIA_FIELD_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.option.amount', value: 'AMOUNT' },
-  { label: 'form.filter.criteria.option.title', value: 'TITLE' },
-  { label: 'form.filter.criteria.option.date', value: 'DATE' },
+  { label: 'form.filter.criteria.field.amount', value: 'AMOUNT' },
+  { label: 'form.filter.criteria.field.title', value: 'TITLE' },
+  { label: 'form.filter.criteria.field.date', value: 'DATE' },
 ];
 
 const AMOUNT_OPERATOR_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.operator.equal', value: 'EQUAL' },
+  { label: 'form.filter.criteria.operator.equals', value: 'EQUALS' },
   { label: 'form.filter.criteria.operator.greater-than', value: 'GREATER_THAN' },
   { label: 'form.filter.criteria.operator.less-than', value: 'LESS_THAN' },
 ];
 
 const DATE_OPERATOR_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.operator.equal', value: 'EQUAL' },
+  { label: 'form.filter.criteria.operator.equals', value: 'EQUALS' },
   { label: 'form.filter.criteria.operator.from', value: 'FROM' },
   { label: 'form.filter.criteria.operator.to', value: 'TO' },
 ];
 
 const DEFAULT_OPERATOR_OPTIONS: Array<Option> = [
-  { label: 'form.filter.criteria.operator.equal', value: 'EQUAL' },
+  { label: 'form.filter.criteria.operator.equals', value: 'EQUALS' },
   { label: 'form.filter.criteria.operator.starts-with', value: 'STARTS_WITH' },
   { label: 'form.filter.criteria.operator.ends-with', value: 'ENDS_WITH' },
 ];
@@ -47,7 +47,7 @@ export const CriteriaRow: ReactComponent<CriteriaProps> = ({ index, onAdd, onRem
   useEffect(() => {
     switch (fieldValue) {
       case 'AMOUNT':
-        setValue(`${fieldPrefix}operator`, 'EQUAL');
+        setValue(`${fieldPrefix}operator`, 'EQUALS');
         setValue(`${fieldPrefix}value`, '0');
         break;
       case 'DATE':
