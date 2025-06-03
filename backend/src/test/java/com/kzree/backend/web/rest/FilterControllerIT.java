@@ -140,6 +140,26 @@ public class FilterControllerIT {
 
     @Test
     @Transactional
+    public void createNewFilterWithMisMatchedCriteriaFieldAndOperator() throws Exception {
+        var criteriaDTO = new CriteriaDTO();
+        criteriaDTO.setField(CriteriaField.TITLE);
+        criteriaDTO.setOperator(CriteriaOperator.FROM);
+        criteriaDTO.setValue("Sto");
+
+        var filterDTO = new FilterDTO();
+        filterDTO.setName("Test name");
+        filterDTO.setCriterias(Set.of(criteriaDTO));
+
+        mockMvc
+                .perform(post(ENTITY_API_URL)
+                        .contentType("application/json")
+                        .content(Serialization.serializeJSONFromObject(filterDTO)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value(ErrorCodes.VALIDATION_ERROR));
+    }
+
+    @Test
+    @Transactional
     public void deleteFilter() throws Exception {
         var testName = "Filter to Delete";
 
@@ -165,7 +185,7 @@ public class FilterControllerIT {
         em.clear();
 
         var filters = filterRepository.findAll();
-        assertThat(filters).isNotEmpty();
+        assertThat(filters).isEmpty();
 
         var criteriaList = criteriaRepository.findAll();
         assertThat(criteriaList).isEmpty();

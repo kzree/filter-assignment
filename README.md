@@ -33,10 +33,9 @@ docker compose -f ./src/main/resources/docker/postgres.yml up
 ./gradlew bootRun
 ```
 
-Backend test (test containers not configured correctly currently so need to spin up db)
+Backend test run (requires docker for test containers):
 
 ```bash
 cd ./backend
-docker compose -f ./src/main/resources/docker/postgres.yml up
 ./gradlew integrationTests
 ```

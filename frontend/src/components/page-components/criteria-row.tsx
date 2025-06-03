@@ -64,8 +64,8 @@ export const CriteriaRow: ReactComponent<CriteriaProps> = ({ index, onAdd, onRem
   }, [fieldValue]);
 
   return (
-    <div className="flex gap-4">
-      <div className="grid grid-cols-3 gap-4 w-full">
+    <div className="flex flex-col lg:flex-row gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
         <FormField label="form.filter.label.criteria.field" htmlFor={`${fieldPrefix}field`}>
           <Select
             id={`${fieldPrefix}field`}

@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -14,5 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest(classes = { BackendApplication.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @ActiveProfiles(profiles = { "testcontainers" })
+@Import(TestcontainersConfiguration.class)
 public @interface IntegrationTest {
 }

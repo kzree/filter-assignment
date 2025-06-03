@@ -11,8 +11,11 @@ export type ModalProps = {
   title: string;
 };
 
+const MODAL_MIN_HEIGHT = 300;
+const MODAL_MAX_HEIGHT = 800;
+
 // I would have made only the content scrollable and have the title stay inplace, but due
-// to the interesting resizing requirement the scrolling will look ugly
+// to the interesting resizing requirement the scrolling will look ugly.
 export const Modal: ReactComponent<ModalProps> = ({ children, onClose, title, isOpen = false }) => {
   const [height, setHeight] = useState(500);
   const [isResizing, setIsResizing] = useState(false);
@@ -47,7 +50,10 @@ export const Modal: ReactComponent<ModalProps> = ({ children, onClose, title, is
       if (!isResizing) return;
 
       const deltaY = e.clientY - startY.current;
-      const newHeight = Math.max(300, Math.min(800, startHeight.current + deltaY));
+      const newHeight = Math.max(
+        MODAL_MIN_HEIGHT,
+        Math.min(MODAL_MAX_HEIGHT, startHeight.current + deltaY),
+      );
       setHeight(newHeight);
     };
 
@@ -73,7 +79,7 @@ export const Modal: ReactComponent<ModalProps> = ({ children, onClose, title, is
   return ReactDOM.createPortal(
     <dialog
       ref={dialog}
-      className="top-1/2 left-1/2 -translate-1/2 w-[950px] p-12 rounded bg-white shadow backdrop:bg-black/50 backdrop:backdrop-blur-md"
+      className="relative top-1/2 left-1/2 -translate-1/2 w-[950px] p-12 rounded bg-white shadow backdrop:bg-black/50 backdrop:backdrop-blur-md"
       style={{ height }}
     >
       {!!onClose && (
@@ -87,9 +93,9 @@ export const Modal: ReactComponent<ModalProps> = ({ children, onClose, title, is
       <Text as="h3" size="xl" className="pb-6" bold>
         {t(title)}
       </Text>
-      <div className="overflow-auto">{children}</div>
+      <div>{children}</div>
       <div
-        className="absolute bottom-0 left-0 right-0 h-2 cursor-ns-resize hover:bg-gray-200 transition-colors"
+        className="fixed bottom-0 left-0 right-0 h-2 cursor-ns-resize transition-colors"
         onMouseDown={handleMouseDown}
         style={{
           background: isResizing ? 'rgba(59, 130, 246, 0.3)' : 'transparent',
