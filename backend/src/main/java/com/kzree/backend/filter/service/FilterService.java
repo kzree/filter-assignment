@@ -34,7 +34,13 @@ public class FilterService {
     @Transactional
     public FilterDTO createFilter(FilterDTO fitler) {
         var filter = filterMapper.toEntity(fitler);
-        return filterMapper.toDto(filterRepository.save(filter));
+
+        for (var criteria : filter.getCriterias()) {
+            criteria.setFilter(filter);
+        }
+
+        filter = filterRepository.save(filter);
+        return filterMapper.toDto(filter);
     }
 
     @Transactional

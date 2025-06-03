@@ -54,5 +54,12 @@
         }
       }
     }
+  },
+  "modal": {
+    "filter": {
+      "create": {
+        "title": "Create new filter"
+      }
+    }
   }
 }
