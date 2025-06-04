@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Card, Text } from '@/components/common';
+import { Button, Card, Divider, Text } from '@/components/common';
 import { Container, Page } from '@/components/layout';
 import { FilterFormWithContext, FilterTable, NewFilterModal } from '@/components/page-components';
 import { useAppStore } from '@/store';
@@ -52,7 +52,8 @@ function App() {
           <FilterTable />
           {showForm && (
             <>
-              <Text as="h2" size="lg" bold className="mt-24">
+              <Divider />
+              <Text as="h2" size="lg" bold className="mb-8">
                 {t('form.filter.heading.new')}
               </Text>
               <FilterFormWithContext />

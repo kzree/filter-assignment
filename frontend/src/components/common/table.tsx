@@ -11,7 +11,7 @@ type TableMeta = {
 export const TBody = <TData extends object>({ table }: { table: ReactTable<TData> }) => (
   <tbody>
     {table.getRowModel().rows.map((row) => (
-      <tr className="h-14 border-b border-gray-200" key={row.id}>
+      <tr className="h-14 border-b border-gray-200 last:border-transparent" key={row.id}>
         {row.getVisibleCells().map((cell, idx) => {
           const style: CSSProperties = {};
           const meta = cell.column.columnDef.meta as TableMeta | undefined;
