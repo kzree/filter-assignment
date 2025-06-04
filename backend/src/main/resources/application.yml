@@ -3,7 +3,10 @@ server:
 
 spring:
   application:
-    name: demo-app
+    name: filter-api
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
 
   devtools:
     livereload:
