@@ -46,6 +46,7 @@ Nice to haves that if I have time and not too tired I might add.
 
 - [ ] workflow caches
 - [x] form error texts
+- [ ] filter updating
 - [ ] users?
 - [ ] docker image
 - [ ] config endpoint to get the form enums from the backend
