@@ -5,7 +5,8 @@
       "heading": "Filters",
       "button": {
         "new": "Create new filter",
-        "toggle": "Toggle form mode"
+        "toggle": "Toggle form mode",
+        "delete-filter": "Delete"
       },
       "table": {
         "row": {
