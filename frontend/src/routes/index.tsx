@@ -1,8 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { Button, Card, Text } from '@/components/common';
 import { Container, Page } from '@/components/layout';
-import { Button, Card, Modal, Text } from '@/components/common';
 import { FilterFormWithContext, FilterTable, NewFilterModal } from '@/components/page-components';
 import { useAppStore } from '@/store';
 
