@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import type { ReactComponent } from '@/types/react';
 
 type FormFieldProps = {
@@ -17,7 +18,12 @@ export const FormField: ReactComponent<FormFieldProps> = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="font-semibold" htmlFor={htmlFor}>
+      <label
+        className={clsx('font-semibold', {
+          'after:content-["*"] after:text-red-500 after:ml-0.5': required,
+        })}
+        htmlFor={htmlFor}
+      >
         {t(label)}
       </label>
       {children}

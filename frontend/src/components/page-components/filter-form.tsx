@@ -26,7 +26,7 @@ const FilterForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-8">
         <div className="grid grid-cols-2 gap-4">
-          <FormField label="form.filter.label.name" htmlFor="name">
+          <FormField label="form.filter.label.name" htmlFor="name" required>
             <Input id="name" {...register('name')} />
           </FormField>
         </div>
