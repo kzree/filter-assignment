@@ -29,3 +29,29 @@ jobs:
       - name: Run typescript compiler checks
         working-directory: frontend
         run: npx tsc
+  backend:
+    name: Backend Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
+
+      - name: Make gradlew executable
+        working-directory: backend
+        run: chmod +x gradlew
+
+      - name: Run integration tests
+        working-directory: backend
+        run: ./gradlew integrationTest
