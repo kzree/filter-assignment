@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Card, Divider, Text } from '@/components/common';
+import { Button, Card, Divider, Loader, Text } from '@/components/common';
 import { Container, Page } from '@/components/layout';
 import { FilterFormWithContext, FilterTable, NewFilterModal } from '@/components/page-components';
 import { useAppStore } from '@/store';
@@ -38,27 +38,29 @@ function App() {
     <Page title="filters">
       <Container className="py-10">
         <Card>
-          <div className="flex items-center justify-between pb-10">
-            <Text size="2xl" as="h1" bold>
-              {t('page.filters.heading')}
-            </Text>
-            <div className="flex gap-2">
-              <Button onClick={handleToggleFormVisualType}>
-                {t('page.filters.button.toggle')}
-              </Button>
-              <Button onClick={handleCreateNewButton}>{t('page.filters.button.new')}</Button>
-            </div>
-          </div>
-          <FilterTable />
-          {showForm && (
-            <>
-              <Divider />
-              <Text as="h2" size="lg" bold className="mb-8">
-                {t('form.filter.heading.new')}
+          <Suspense fallback={<Loader />}>
+            <div className="flex items-center justify-between pb-10">
+              <Text size="2xl" as="h1" bold>
+                {t('page.filters.heading')}
               </Text>
-              <FilterFormWithContext />
-            </>
-          )}
+              <div className="flex gap-2">
+                <Button onClick={handleToggleFormVisualType}>
+                  {t('page.filters.button.toggle')}
+                </Button>
+                <Button onClick={handleCreateNewButton}>{t('page.filters.button.new')}</Button>
+              </div>
+            </div>
+            <FilterTable />
+            {showForm && (
+              <>
+                <Divider />
+                <Text as="h2" size="lg" bold className="mb-8">
+                  {t('form.filter.heading.new')}
+                </Text>
+                <FilterFormWithContext />
+              </>
+            )}
+          </Suspense>
         </Card>
       </Container>
       <NewFilterModal />

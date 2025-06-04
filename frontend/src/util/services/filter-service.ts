@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { api } from '../api';
 import type { Filter } from '@/types/api';
 import type { FilterFormData } from '../schema';
@@ -23,12 +23,12 @@ export const deleteFilter = async (filterId: string): Promise<void> => {
 };
 
 export const useFilters = () => {
-  const { data, status } = useQuery({
+  const { data, status } = useSuspenseQuery({
     queryKey: ['filters'],
     queryFn: getFilters,
   });
 
-  return { filters: data || [], status };
+  return { filters: data, status };
 };
 
 export const useSaveFilter = (onSuccess?: () => void) => {
