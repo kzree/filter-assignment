@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { api } from '../api';
 import type { Filter } from '@/types/api';
 import type { FilterFormData } from '../schema';
