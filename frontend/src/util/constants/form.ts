@@ -23,3 +23,12 @@ export const DEFAULT_OPERATOR_OPTIONS: Array<Option> = [
   { label: 'form.filter.criteria.operator.starts-with', value: 'STARTS_WITH' },
   { label: 'form.filter.criteria.operator.ends-with', value: 'ENDS_WITH' },
 ];
+
+export const AMOUNT_DEFAULT_OPERATOR = 'EQUALS';
+export const AMOUNT_DEFAULT_VALUE = '0';
+export const DATE_DEFAULT_OPERATOR = 'FROM';
+export const DATE_DEFAULT_VALUE = '';
+export const TEXT_DEFAULT_OPERATOR = 'STARTS_WITH';
+export const TEXT_DEFAULT_VALUE = '';
+
+export const NEW_CRITERIA = { field: 'AMOUNT', operator: 'EQUAL', value: '0' };

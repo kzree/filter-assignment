@@ -7,6 +7,7 @@ import { Criterias } from './criterias';
 import type { FilterFormData } from '@/util/schema';
 import { filterFormSchema } from '@/util/schema';
 import { useSaveFilter } from '@/util/services';
+import { NEW_CRITERIA } from '@/util/constants';
 
 const FilterForm = () => {
   const { t } = useTranslation();
@@ -46,7 +47,7 @@ export const FilterFormWithContext = () => {
     resolver: zodResolver(filterFormSchema),
     defaultValues: {
       name: '',
-      criterias: [{ field: 'AMOUNT', operator: 'EQUALS', value: '2' }],
+      criterias: [NEW_CRITERIA],
     },
   });
 

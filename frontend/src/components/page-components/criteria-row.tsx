@@ -5,10 +5,16 @@ import { Button } from '../common';
 import { FormField, Input, Select } from '../form';
 import type { ReactComponent } from '@/types/react';
 import {
+  AMOUNT_DEFAULT_OPERATOR,
+  AMOUNT_DEFAULT_VALUE,
   AMOUNT_OPERATOR_OPTIONS,
   CRITERIA_FIELD_OPTIONS,
+  DATE_DEFAULT_OPERATOR,
+  DATE_DEFAULT_VALUE,
   DATE_OPERATOR_OPTIONS,
   DEFAULT_OPERATOR_OPTIONS,
+  TEXT_DEFAULT_OPERATOR,
+  TEXT_DEFAULT_VALUE,
 } from '@/util/constants';
 
 export type CriteriaProps = {
@@ -27,16 +33,16 @@ export const CriteriaRow: ReactComponent<CriteriaProps> = ({ index, onAdd, onRem
   useEffect(() => {
     switch (fieldValue) {
       case 'AMOUNT':
-        setValue(`${fieldPrefix}operator`, 'EQUALS');
-        setValue(`${fieldPrefix}value`, '0');
+        setValue(`${fieldPrefix}operator`, AMOUNT_DEFAULT_OPERATOR);
+        setValue(`${fieldPrefix}value`, AMOUNT_DEFAULT_VALUE);
         break;
       case 'DATE':
-        setValue(`${fieldPrefix}operator`, 'FROM', { shouldValidate: true });
-        setValue(`${fieldPrefix}value`, '');
+        setValue(`${fieldPrefix}operator`, DATE_DEFAULT_OPERATOR);
+        setValue(`${fieldPrefix}value`, DATE_DEFAULT_VALUE);
         break;
       default:
-        setValue(`${fieldPrefix}operator`, 'STARTS_WITH', { shouldValidate: true });
-        setValue(`${fieldPrefix}value`, '');
+        setValue(`${fieldPrefix}operator`, TEXT_DEFAULT_OPERATOR);
+        setValue(`${fieldPrefix}value`, TEXT_DEFAULT_VALUE);
         break;
     }
   }, [fieldValue, fieldPrefix, setValue]);
