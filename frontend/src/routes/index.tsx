@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Card, Text } from '@/components/common';
@@ -15,6 +15,12 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const { t } = useTranslation();
   const { setIsFormModalOpen, formVisualType, setFormVisualType } = useAppStore();
+
+  useEffect(() => {
+    if (formVisualType === 'modal') {
+      setShowForm(false);
+    }
+  }, [formVisualType]);
 
   const handleCreateNewButton = () => {
     if (formVisualType === 'modal') {

@@ -55,6 +55,9 @@
           "ends-with": "Ends with"
         }
       }
+    },
+    "error": {
+      "required": "Field is required"
     }
   },
   "modal": {

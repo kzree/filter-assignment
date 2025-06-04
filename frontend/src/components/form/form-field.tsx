@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import { FormError } from './form-error';
 import type { ReactComponent } from '@/types/react';
 
 type FormFieldProps = {
@@ -27,6 +28,7 @@ export const FormField: ReactComponent<FormFieldProps> = ({
         {t(label)}
       </label>
       {children}
+      <FormError fieldId={htmlFor} />
     </div>
   );
 };

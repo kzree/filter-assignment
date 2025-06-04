@@ -39,3 +39,8 @@ Backend test run (requires docker for test containers):
 cd ./backend
 ./gradlew integrationTests
 ```
+
+## Todo
+
+[ ] workflow caches
+[x] form error texts
